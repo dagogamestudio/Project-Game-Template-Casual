@@ -30,6 +30,11 @@ public class CoreManager : MonoBehaviour
     public bool isNotifActive;
     public List<NotifyData> notifyQueue = new List<NotifyData>();
 
+    private void Start()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 240;
+    }
 
     public void ShowNotif(string message, float showDuration = 1)
     {
