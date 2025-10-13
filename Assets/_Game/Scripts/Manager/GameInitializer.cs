@@ -9,10 +9,10 @@ public class GameInitializer : MonoBehaviour
     }
     private IEnumerator InitManager()
     {
-        GameManager.Instance.Initialize();
+        SaveManager.Instance.Initialize();
         yield return null;
 
-        SaveManager.Instance.Initialize();
+        GameManager.Instance.Initialize();
         yield return null;
 
         ShopManager.Instance.Initialize();

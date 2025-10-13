@@ -33,18 +33,20 @@ public class SaveManager : MonoBehaviour
 
     public void SaveData()
     {
+        Debug.Log("Save Data");
         if (GameManager.Instance == null) return;
 
+        Debug.Log("Save Data");
         DataGame data = new()
         {
-            playerLevel = GameManager.Instance.playerLevel,
+            playerBestScore = GameManager.Instance.playerBestScore,
             playerMoney = GameManager.Instance.PlayerMoney,
             listItemDataSave = GetListItemDataShop()
         };
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);
-        //Debug.Log("Game saved: " + savePath);
+        Debug.Log("Game saved: " + savePath);
     }
 
     private List<ItemDataSave> GetListItemDataShop(bool? isNewGame = null)
@@ -105,7 +107,7 @@ public class SaveManager : MonoBehaviour
 
         //Apply Data ke gameplay
         GameManager.Instance.PlayerMoney = data.playerMoney;
-        GameManager.Instance.playerLevel = data.playerLevel;
+        GameManager.Instance.playerBestScore = data.playerBestScore;
 
         /*        List<ShopCategory> listShopData = ShopManager.Instance.listShopCategory;
                 // Apply ke shop
@@ -175,7 +177,7 @@ public class SaveManager : MonoBehaviour
 public class DataGame
 {
     public int playerMoney;
-    public int playerLevel;
+    public int playerBestScore;
     // Simpan status unlock item
     public List<ItemDataSave> listItemDataSave = new();
 }

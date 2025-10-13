@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject panelFinish;
 
     public TextMeshProUGUI textMoney;
+    public TextMeshProUGUI textScore;
+    public TextMeshProUGUI textBestScore;
 
 
     public void ShowPanel(string panelName)
@@ -40,6 +43,12 @@ public class CanvasManager : MonoBehaviour
     public void SetTextMoney(int price)
     {
         textMoney.text = Helper.TurnToIDRValue(price);
+    }
+
+    public void SetTextScore(int playerScore, int playerBestScore)
+    {
+        textScore.text = $"SCORE: {playerScore}";
+        textBestScore.text = $"BEST SCORE: {playerBestScore}";
     }
 }
 

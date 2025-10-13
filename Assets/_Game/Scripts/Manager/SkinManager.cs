@@ -28,6 +28,12 @@ public class SkinManager : MonoBehaviour
         //SelectedSkin(shop)
     }
 
+    private void Start()
+    {
+        transformSkin.GetChild(0).gameObject.SetActive(false);
+        transformAcc.GetChild(0).gameObject.SetActive(false);
+    }
+
     public void SelectedSkin(int skinIndex)
     {
         if (currentSkin != null)
