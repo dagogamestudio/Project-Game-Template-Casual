@@ -66,7 +66,7 @@ public class PanelLeaderboard : MonoBehaviour
             Take = countDataShowed, // Atur jumlah data di show
         };
 
-        Leaderboards.DemoSceneLeaderboard.GetEntries(searchQuery, OnLeaderboardLoaded, ErrorCallback);
+        Leaderboards.Leaderboard.GetEntries(searchQuery, OnLeaderboardLoaded, ErrorCallback);
         ToggleLoadingPanel(true);
     }
     private void ErrorCallback(string error)

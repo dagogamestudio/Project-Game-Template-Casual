@@ -33,20 +33,18 @@ public class SaveManager : MonoBehaviour
 
     public void SaveData()
     {
-        Debug.Log("Save Data");
         if (GameManager.Instance == null) return;
 
-        Debug.Log("Save Data");
         DataGame data = new()
         {
             playerBestScore = GameManager.Instance.playerBestScore,
-            playerMoney = GameManager.Instance.PlayerMoney,
+            playerCoin = GameManager.Instance.PlayerCoin,
             listItemDataSave = GetListItemDataShop()
         };
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);
-        Debug.Log("Game saved: " + savePath);
+        //Debug.Log("Game saved: " + savePath);
     }
 
     private List<ItemDataSave> GetListItemDataShop(bool? isNewGame = null)
@@ -106,32 +104,8 @@ public class SaveManager : MonoBehaviour
         DataGame data = JsonUtility.FromJson<DataGame>(json);
 
         //Apply Data ke gameplay
-        GameManager.Instance.PlayerMoney = data.playerMoney;
+        GameManager.Instance.PlayerCoin = data.playerCoin;
         GameManager.Instance.playerBestScore = data.playerBestScore;
-
-        /*        List<ShopCategory> listShopData = ShopManager.Instance.listShopCategory;
-                // Apply ke shop
-                foreach (var savedItem in data.listItemDataSave)
-                {
-                    for (int i = 0; i < listShopData.Count; i++)
-                    {
-                        if (listShopData[i].categoryId == savedItem.categoryId)
-                        {
-                            for (int j = 0; j < listShopData[i].listItemShop.Count; j++)
-                            {
-                                if(j == savedItem.indexItem)
-                                {
-                                    listShopData[i].listItemShop[j].isUnlocked = savedItem.isUnlocked;
-                                    listShopData[i].listItemShop[j].isUsed = savedItem.isUsed;
-                                }
-                            }
-                        }
-                    }
-
-                    ShopManager.Instance.listShopCategory
-                        .Find(c => c.categoryId == savedItem.categoryId)
-                        .listItemShop[savedItem.indexItem].isUnlocked = savedItem.isUnlocked;
-                }*/
 
         foreach (var savedItem in data.listItemDataSave)
         {
@@ -176,7 +150,7 @@ public class SaveManager : MonoBehaviour
 [Serializable]
 public class DataGame
 {
-    public int playerMoney;
+    public int playerCoin;
     public int playerBestScore;
     // Simpan status unlock item
     public List<ItemDataSave> listItemDataSave = new();

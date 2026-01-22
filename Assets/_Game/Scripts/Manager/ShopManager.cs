@@ -116,12 +116,12 @@ public class ShopManager : MonoBehaviour
             //Beli itemnya
 
             //Check jika uang cukup
-            int playerMoney = GameManager.Instance.PlayerMoney;
+            int playerMoney = GameManager.Instance.PlayerCoin;
             int itemPrice = itemShop.listItemShop[indexItem].itemPrice;
 
             if (playerMoney >= itemPrice)
             {
-                GameManager.Instance.PlayerMoney -= itemPrice;
+                GameManager.Instance.PlayerCoin -= itemPrice;
                 UnlockItem(indexItem);
 
                 CoreManager.Instance.ShowNotif($"Buy Success, {itemShop.listItemShop[indexItem].itemName} Unlocked");

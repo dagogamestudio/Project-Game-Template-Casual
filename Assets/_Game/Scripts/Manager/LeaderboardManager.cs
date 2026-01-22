@@ -21,7 +21,7 @@ public class LeaderboardManager : MonoBehaviour
     {
         string playerName = PlayerPrefs.GetString("PlayerName");
         Debug.Log("Submit Score " + highScore + " Name " + playerName);
-        Leaderboards.DemoSceneLeaderboard.UploadNewEntry(playerName, highScore, Callback, ErrorCallback);
+        Leaderboards.Leaderboard.UploadNewEntry(playerName, highScore, Callback, ErrorCallback);
     }
 
     public void ResetPlayer()

@@ -8,9 +8,10 @@ public class PlayerLoseTrigger : MonoBehaviour
         {
             EnemyController enemy = other.GetComponentInParent<EnemyController>();
             if (enemy != null)
-                enemy.Die();
-
-            GameManager.Instance.GameFinish();
+            {
+                PlayerStatus.Instance.GetDamage(enemy.damage * 2);
+                enemy.Die(false);
+            }
         }
     }
 }

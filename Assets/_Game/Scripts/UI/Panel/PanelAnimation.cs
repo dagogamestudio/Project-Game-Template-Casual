@@ -35,6 +35,6 @@ public class PanelAnimation : MonoBehaviour
 
     public void CloseCanvasPanel()
     {
-        GameManager.Instance?.canvasManager?.HidePanel(panelName);
+        //GameManager.Instance?.canvasManager?.HidePanel(panelName);
     }
 }

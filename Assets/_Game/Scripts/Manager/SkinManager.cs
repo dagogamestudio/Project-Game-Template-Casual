@@ -30,8 +30,9 @@ public class SkinManager : MonoBehaviour
 
     private void Start()
     {
-        transformSkin.GetChild(0).gameObject.SetActive(false);
-        transformAcc.GetChild(0).gameObject.SetActive(false);
+        /*        transformSkin.GetChild(0).gameObject.SetActive(false);
+                transformAcc.GetChild(0).gameObject.SetActive(false);*/
+        SelectedSkin(0);
     }
 
     public void SelectedSkin(int skinIndex)

@@ -11,6 +11,7 @@ public class CheckVersion : MonoBehaviour
     [SerializeField] private PanelAnimation panelUpdate;
     [SerializeField] private TMP_Text textDescriptionUpdate;
     [SerializeField] private AutoSizePrefferedText textDetailUpdate;
+    [SerializeField] private PanelAnimation panelChangeName;
 
     [Header("Data")]
     [SerializeField] private string updateDescription = "";
@@ -21,9 +22,17 @@ public class CheckVersion : MonoBehaviour
 
     void Start()
     {
+        if (!PlayerPrefs.HasKey(DataString.PlayerName))
+        {
+            panelChangeName.OpenPanel();
+            Debug.Log("New Player");
+        }
+
         if (string.IsNullOrEmpty(jsonURL)) return;
 
         StartCoroutine(GetData(jsonURL));
+
+
     }
 
     IEnumerator GetData(string url)

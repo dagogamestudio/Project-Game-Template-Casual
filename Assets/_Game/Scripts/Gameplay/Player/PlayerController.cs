@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
-    public PlayerShooting playerShooting;
+    public PlayerShooter playerShooting;
 
     [Header("Movement Settings")]
     [SerializeField] private float horizontalSpeed;
@@ -45,5 +45,20 @@ public class PlayerController : MonoBehaviour
         // Smooth movement di FixedUpdate
         Vector3 targetPos = new Vector3(targetX, rb.position.y, rb.position.z);
         rb.MovePosition(Vector3.Lerp(rb.position, targetPos, smoothMove * Time.fixedDeltaTime));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyController enemy = collision.gameObject.GetComponentInParent<EnemyController>();
+            if (enemy != null)
+            {
+                PlayerStatus.Instance.GetDamage(enemy.damage);
+                enemy.Die(false);
+            }
+
+            //GameManager.Instance.GameFinish();
+        }
     }
 }

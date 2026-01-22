@@ -1,16 +1,13 @@
+using System;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private float lifeTime = 3f;
-    [SerializeField] private int damage = 10;
-
+    private float damage;
     private float timer;
-    private Rigidbody rb;
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+
+    public Rigidbody rb;
 
     private void OnEnable()
     {
@@ -26,11 +23,13 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Jika nanti ada enemy:
+        // Hit Enemy
         if (other.CompareTag("Enemy"))
         {
+            ObjectPoolManager.Instance.SpawnFromPool("EffectHit", transform.position, transform.rotation);
             other.GetComponentInParent<EnemyController>()?.TakeDamage(damage);
         }
+
         HideBullet();
     }
 
@@ -41,5 +40,10 @@ public class BulletController : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         gameObject.SetActive(false);
+    }
+
+    internal void SetDamage(float bulletDamage)
+    {
+        damage = bulletDamage;
     }
 }
